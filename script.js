@@ -10,4 +10,12 @@ function multiply(a , b) {
 function divide(a , b) {
     return a / b;
 };
-console.log(divide(5 , 8))
+
+function operate (operator, a , b) {
+    if (operator == '+') return add(a , b);
+    else if(operator == '-') return subtract(a , b);
+    else if(operator == '*') return multiply(a , b);
+    else if(operator == '/') return divide(a , b);
+    else return `error operator is: ${operator}, a: ${a}, b: ${b}`;
+}
+console.log(operate('*' , 10 , 2 ))
