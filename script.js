@@ -27,9 +27,10 @@ let outputNumber = "";       //clicking on number displays it on result div
 for(let i = 0; i <= 9; i++) {
     let number = arrayNumbers[i].textContent;
     arrayNumbers[i].addEventListener('click',() => {
-        // if(outputNumber != "") {
-        //     equation.textContent = outputNumber;
-        // }
+        if(equation.textContent.slice(-1) == "=") {
+            equation.textContent = "";
+            result.textContent = ""; 
+        } 
         result.textContent += number;
         return outputNumber = result.textContent;
     })  
@@ -40,12 +41,17 @@ let operators = [...calc];
 let calcOperator;
 let firstNumber;
 let newEquation;
-let array
+let array;
         //clicking on operator returns the outputNumber to equation div with the operator ,then result clears 
 for(let i = 0; i < operators.length ; i++ ) {
     operators[i].addEventListener('click', ()=>{ 
         calcOperator = operators[i].textContent; 
         firstNumber = outputNumber;
+        if(equation.textContent.slice(-1) == "=") {
+            equation.textContent = "";
+                firstNumber = result.textContent
+            result.textContent = ""; 
+        } 
         equation.textContent += ` ${firstNumber} ${calcOperator}`;
         result.textContent = "";
         newEquation = equation.textContent;
@@ -54,7 +60,6 @@ for(let i = 0; i < operators.length ; i++ ) {
         if(array.length == 5) {
             equation.textContent = " " + operate(array[2], array[1], array[3]) + " " + array[4];
         }
-
     })
 }
             //resets
@@ -66,15 +71,14 @@ clear.addEventListener('click' , () => {
     result.textContent = "";
 } )
 
-let fullEquation;
+
 const equal = document.querySelector('#equal');
 
 equal.addEventListener('click', () =>{
-    equation.textContent += " " + outputNumber;
     firstNumber = [...equation.textContent.split(' ')]
-    console.log(firstNumber)
+    equation.textContent += " " + outputNumber + " =";
     result.textContent = operate(calcOperator, firstNumber[1], outputNumber);
-    fullEquation = equation.textContent;
+    firstNumber = [...equation.textContent];
 })
 
 
