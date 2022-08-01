@@ -1,32 +1,50 @@
 :root{
-    --output: rgb(119, 120, 111);
+    --output: rgb(100, 95, 96);
     --number: rgb(161, 159, 159);
     --equal: rgb(214, 60, 81);
     --operator: rgb(58, 57, 57);
     --calculator: rgb(116, 116, 116);
+    --text: rgb(255, 255, 255);
 }
 
 #calculator{
+    margin: 5em auto;
     height: 25em;
     width: 20em;
     border: 1px solid black;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 5em auto;
     background: var(--calculator);
     gap: 1px;
     padding: 2px;
     border-radius: 10px;
+
 }
-#calculator > *{
+#calculator > *:not(#output){
     /* border: 1px solid ; */
     text-align: center;
     padding-top: 30px ;
-    color: white;
+    color: var(--text);
 }
 #output {
     grid-area: 1 / 1 / span 1 / span 4;  
     background-color: var(--output);
     border-radius: 8px 8px 0 0 ; 
+    box-sizing: border-box;
+    color: var(--text);
+    position: relative;
+}
+#print, #result {
+    font-size: 25px;
+}
+#print {
+    margin: 2px 0 0 8px;
+}
+#result {
+    position: absolute;
+    right: 8px;
+    bottom: 2px;
 }
 .number {
     background-color: var(--number);
