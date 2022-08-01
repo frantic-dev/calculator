@@ -1,9 +1,9 @@
 :root{
-    --output: rgb(100, 95, 96);
+    --output: rgb(97, 77, 81);
     --number: rgb(161, 159, 159);
     --equal: rgb(214, 60, 81);
     --operator: rgb(58, 57, 57);
-    --calculator: rgb(116, 116, 116);
+    --calculator: rgb(117, 117, 117);
     --text: rgb(255, 255, 255);
 }
 
