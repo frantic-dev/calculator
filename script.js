@@ -1,4 +1,4 @@
-function add(a , b) {
+function add(a , b) {  //math operations 
     return +a + +b;
 };
 function subtract(a , b) {
@@ -23,7 +23,7 @@ let arrayNumbers = [...numbers];
 const result = document.querySelector('#result');
 let equation = document.querySelector("#print")
 
-let outputNumber = 0;
+let outputNumber = 0;       //clicking on number displays it on result div
 for(let i = 0; i <= 9; i++) {
     let number = arrayNumbers[i].textContent;
     arrayNumbers[i].addEventListener('click',() => {
@@ -34,15 +34,24 @@ for(let i = 0; i <= 9; i++) {
 
 const calc = document.querySelectorAll('.operator');
 let operators = [...calc];
+
+        //clicking on operator returns the outputNumber to equation div with the operator ,then result clears 
 for(let i = 0; i < operators.length ; i++ ) {
     operators[i].addEventListener('click', ()=>{
         let calcOperator = operators[i].textContent; 
         let firstNumber = outputNumber;
-        let secondNumber;
         equation.textContent += ` ${firstNumber} ${calcOperator}`;
         result.textContent = "";
     })
 }
+            //resets
+const clear = document.querySelector('#clear');
+
+clear.addEventListener('click' , () => {
+    outputNumber = 0
+    equation.textContent = "";
+    result.textContent = "";
+} )
 
 
     
