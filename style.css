@@ -3,7 +3,7 @@
     --number: rgb(161, 159, 159);
     --equal: rgb(214, 60, 81);
     --operator: rgb(58, 57, 57);
-    --calculator: rgb(117, 117, 117);
+    --calculator: rgb(223, 223, 223);
     --text: rgb(255, 255, 255);
 }
 
@@ -14,19 +14,23 @@
     border: 1px solid black;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 5em auto;
+    grid-template-rows: 5em;
     background: var(--calculator);
     gap: 1px;
     padding: 2px;
     border-radius: 10px;
-
+    box-shadow: 0 0 15px var(--operator);
 }
 #calculator > *:not(#output){
     /* border: 1px solid ; */
     text-align: center;
     padding-top: 30px ;
     color: var(--text);
+    cursor: pointer;
 }
+/* #calculator > *:not(#output):hover{
+    
+} */
 #output {
     grid-area: 1 / 1 / span 1 / span 4;  
     background-color: var(--output);
