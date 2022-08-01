@@ -1,0 +1,45 @@
+:root{
+    --output: rgb(119, 120, 111);
+    --number: rgb(161, 159, 159);
+    --equal: rgb(214, 60, 81);
+    --operator: rgb(58, 57, 57);
+    --calculator: rgb(116, 116, 116);
+}
+
+#calculator{
+    height: 25em;
+    width: 20em;
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: var(--calculator);
+    gap: 1px;
+    padding: 2px;
+    border-radius: 10px;
+}
+#calculator > *{
+    /* border: 1px solid ; */
+    text-align: center;
+    padding-top: 30px ;
+    color: white;
+}
+#output {
+    grid-area: 1 / 1 / span 1 / span 4;  
+    background-color: var(--output);
+    border-radius: 8px 8px 0 0 ; 
+}
+.number {
+    background-color: var(--number);
+}
+.operator, #clear{
+    background-color: var(--operator) ;
+}
+#equal {
+    background-color: var(--equal);
+}
+#clear {
+    border-radius: 0 0 0 8px;
+}
+.add {
+    border-radius: 0 0 8px 0;
+}
