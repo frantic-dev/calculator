@@ -45,6 +45,7 @@ let array;
         //clicking on operator returns the outputNumber to equation div with the operator ,then result clears 
 for(let i = 0; i < operators.length ; i++ ) {
     operators[i].addEventListener('click', ()=>{ 
+        counter = 0;
         calcOperator = operators[i].textContent; 
         firstNumber = outputNumber;
         if(equation.textContent.slice(-1) == "=") {
@@ -66,7 +67,8 @@ for(let i = 0; i < operators.length ; i++ ) {
 const clear = document.querySelector('#clear');
 
 clear.addEventListener('click' , () => {
-    outputNumber = 0
+    outputNumber = 0;
+    counter = 0;
     equation.textContent = "";
     result.textContent = "";
 } )
@@ -75,6 +77,7 @@ clear.addEventListener('click' , () => {
 const equal = document.querySelector('#equal');
 
 equal.addEventListener('click', () =>{
+    counter = 0;
     firstNumber = [...equation.textContent.split(' ')]
     equation.textContent += " " + outputNumber + " =";
     result.textContent = operate(calcOperator, firstNumber[1], outputNumber);
@@ -88,6 +91,20 @@ del.addEventListener('click', () => {
     result.textContent = outputNumber;
 })
 
+const comma = document.querySelector("#comma");
+let outputArray;
+let counter = 0;
+comma.addEventListener('click', () => {
+    outputArray = [...outputNumber.split('')];
+    for (let num of outputArray) {
+        if (num == '.') return counter++;
+    }
+    if (counter == 0) {
+        outputNumber += ".";
+        result.textContent = outputNumber;
+        
+    }
+})
 
 
 

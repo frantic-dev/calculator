@@ -70,8 +70,9 @@
     background-color: var(--hover);
     color: var(--hover-text);
 }
-#delete {
+#delete, #comma {
     border: 1px solid black;
     width: 5em;
     height: 5em;
+    display: inline-block;
 }
