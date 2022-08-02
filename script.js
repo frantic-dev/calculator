@@ -81,6 +81,12 @@ equal.addEventListener('click', () =>{
     firstNumber = [...equation.textContent];
 })
 
+const del = document.querySelector("#delete");
+
+del.addEventListener('click', () => {
+    outputNumber = outputNumber.slice(0, -1);
+    result.textContent = outputNumber;
+})
 
 
 
