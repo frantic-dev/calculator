@@ -56,8 +56,7 @@ for(let i = 0; i < operators.length ; i++ ) {
         equation.textContent += ` ${firstNumber} ${calcOperator}`;
         result.textContent = "";
         newEquation = equation.textContent;
-        array = [...newEquation.split(' ')]
-        console.log(array)
+        array = [...newEquation.split(' ')];
         if(array.length == 5) {
             equation.textContent = " " + operate(array[2], array[1], array[3]) + " " + array[4];
         }
@@ -100,6 +99,7 @@ comma.addEventListener('click', () => {
         if (num == '.') return counter++;
     }
     if (counter == 0) {
+        // outputNumber = result.textContent;
         outputNumber += ".";
         result.textContent = outputNumber;
         
