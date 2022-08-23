@@ -12,10 +12,10 @@ function divide(a , b) {
 };
 
 function operate (operator, a , b) {
-    if (operator == '+') return add(a , b);
-    else if(operator == '-') return subtract(a , b);
-    else if(operator == '×') return multiply(a , b);
-    else if(operator == '÷') return divide(a , b);
+    if (operator === '+') return add(a , b);
+    else if(operator === '-') return subtract(a , b);
+    else if(operator === '×' || operator === "*") return multiply(a , b);
+    else if(operator === '÷' || operator === "/") return divide(a , b);
     else return `error operator is: ${operator}, a: ${a}, b: ${b}`;
 }
 const numbers = document.querySelectorAll('.number');
@@ -27,7 +27,7 @@ let outputNumber = "";       //clicking on number displays it on result div
 for(let i = 0; i <= 9; i++) {
     let number = arrayNumbers[i].textContent;
     arrayNumbers[i].addEventListener('click',() => {
-        if(equation.textContent.slice(-1) == "=") {
+        if(equation.textContent.slice(-1) === "=") {
             equation.textContent = "";
             result.textContent = ""; 
         } 
@@ -48,16 +48,16 @@ for(let i = 0; i < operators.length ; i++ ) {
         counter = 0;
         calcOperator = operators[i].textContent; 
         firstNumber = outputNumber;
-        if(equation.textContent.slice(-1) == "=") {
+        if(equation.textContent.slice(-1) === "=") {
             equation.textContent = "";
-                firstNumber = result.textContent
+            firstNumber = result.textContent
             result.textContent = ""; 
         } 
         equation.textContent += ` ${firstNumber} ${calcOperator}`;
         result.textContent = "";
         newEquation = equation.textContent;
         array = [...newEquation.split(' ')];
-        if(array.length == 5) {
+        if(array.length === 5) {
             equation.textContent = " " + operate(array[2], array[1], array[3]) + " " + array[4];
         }
     })
@@ -75,20 +75,24 @@ clear.addEventListener('click' , () => {
 
 const equal = document.querySelector('#equal');
 
-equal.addEventListener('click', () =>{
+equal.addEventListener('click', equalFct)
+
+function equalFct() {
     counter = 0;
     firstNumber = [...equation.textContent.split(' ')]
     equation.textContent += " " + outputNumber + " =";
     result.textContent = operate(calcOperator, firstNumber[1], outputNumber);
     firstNumber = [...equation.textContent];
-})
+}
 
 const del = document.querySelector("#delete");
 
-del.addEventListener('click', () => {
+del.addEventListener('click', deleteFct);
+
+function deleteFct() {
     outputNumber = outputNumber.slice(0, -1);
     result.textContent = outputNumber;
-})
+}
 
 const comma = document.querySelector("#comma");
 let outputArray;
@@ -96,9 +100,9 @@ let counter = 0;
 comma.addEventListener('click', () => {
     outputArray = [...outputNumber.split('')];
     for (let num of outputArray) {
-        if (num == '.') return counter++;
+        if (num === '.') return counter++;
     }
-    if (counter == 0) {
+    if (counter === 0) {
         // outputNumber = result.textContent;
         outputNumber += ".";
         result.textContent = outputNumber;
@@ -106,7 +110,34 @@ comma.addEventListener('click', () => {
     }
 })
 
+window.addEventListener('keydown', (e) => {
+    let number = e.key.match(/[0-9]/g);
+    if (number !== null) {
+        if (equation.textContent.match(/[=]/g) !== null){
+        result.textContent = "";
+        equation.textContent = "";
+    }
+        result.textContent += number;
+        outputNumber = result.textContent; 
+    }else if (e.key === "Enter") equalFct();
+    else if (e.key.match(/[*+/-]/g) !== null) operateFct(e.key);
+    else if (e.key === "Backspace") deleteFct();
+})
 
-
-
-
+function operateFct(operator) {
+    counter = 0;
+    calcOperator = operator; 
+    firstNumber = outputNumber;
+    if(equation.textContent.slice(-1) === "=") {
+        equation.textContent = "";
+        firstNumber = result.textContent
+        result.textContent = ""; 
+    } 
+    equation.textContent += ` ${firstNumber} ${calcOperator}`;
+    result.textContent = "";
+    newEquation = equation.textContent;
+    array = [...newEquation.split(' ')];
+    if(array.length === 5) {
+        equation.textContent = " " + operate(array[2], array[1], array[3]) + " " + array[4];
+    }
+}
